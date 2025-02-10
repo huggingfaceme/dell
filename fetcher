@@ -1,0 +1,20 @@
+function findlink(link){
+  fetch(link)
+  .then(response => response.text()) // Get the response as text (HTML)
+  .then(html => {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');  
+    const downloadLink = doc.querySelector('.btn.btn-main.btn-lg.rounded-full.px-6.font-semibold.flex-1.ic-download-01.ic-before.before\\:text-lg');
+    if (downloadLink) {
+      console.log('Download Link:', downloadLink.href);
+    } else {
+      console.log('Download link not found.');
+    }
+  })
+  .catch(error => {
+    console.log('Error fetching page:', error);
+  });
+
+}
+
+temp0.querySelectorAll("a").forEach((a) => findlink(a.href)) 
